@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'compressor',
+    'landing',
 ]
 
 MIDDLEWARE = [
@@ -126,7 +127,7 @@ STATICFILES_FINDERS = [
 ]
 
 COMPRESS_PRECOMPILERS = (
-    ('text/x-scss', 'sass {infile} {outfile}'),
+    ('text/x-scss', 'sass --load-path=staticfiles {infile} {outfile}'),
 )
 
 STATIC_URL = 'static/'
