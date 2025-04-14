@@ -5,6 +5,12 @@
     <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Open sans Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
     {% compress css %}
     <link rel="stylesheet" type="text/x-scss" href="{% static 'landing/scss/main.scss' %}">
     {% endcompress %}
@@ -14,24 +20,40 @@
     <section class="home">
         <div class="home__wrapper">
             <div class="home__container home__container--login">
-                <h3>Welcome back!</h3>
-                <p>Reading this message is XP waste.</p>
+                <h3>
+                    Welcome back!
+                </h3>
+                <p class="home__subtitle">
+                    Reading this message is XP waste.
+                </p>
     
-                <input 
-                    type="text"
-                    placeholder="Email address"
-                />
-                <input 
-                    type="password"
-                    placeholder="Password"
-                />
-    
+                <div class="home__subcontainer">
+                    <input 
+                        type="text"
+                        placeholder="Email address"
+                    />
+                    <input 
+                        type="password"
+                        placeholder="Password"
+                    />
+                    <a href="#">
+                        Forgot password?
+                    </a>
+                </div>
+
                 <button type="button">
                     LOGIN
                 </button>
     
-                <p>Don't have an account?</p>
-                <p>SIGN UP</p>
+                <p class="home__no-acc">
+                    Don't have an account?
+                </p>
+                <a 
+                    href="#"
+                    class="home__sign-up"
+                >
+                    SIGN UP
+                </a>
             </div>
             <div class="home__container home__container--message">
                 <h1>The best login system ever!</h1>
