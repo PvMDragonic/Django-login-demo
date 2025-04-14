@@ -26,7 +26,7 @@
         height: 70%;
         max-height: 30rem;
 
-        @media (max-width: 768px)
+        @media (max-width: 850px)
         {
             flex-direction: column;
             width: 90%;
@@ -56,7 +56,7 @@
             border-bottom-right-radius: 0;
             padding-right: 1rem;
 
-            @media (max-width: 768px)
+            @media (max-width: 850px)
             {
                 border-bottom-left-radius: 0;
                 border-bottom-right-radius: 0;
@@ -64,6 +64,11 @@
                 padding-right: 0;
                 padding-bottom: 1rem;
                 margin-bottom: -1rem;
+
+                & p
+                {
+                    margin-top: 0;
+                }
             }
         }
 
@@ -73,7 +78,7 @@
             background-color: $color_dark_blue;
             color: $color_white;
 
-            @media (max-width: 768px)
+            @media (max-width: 850px)
             {
                 margin-left: 0;
                 z-index: 100;
@@ -83,6 +88,46 @@
         & h1, h3 
         {
             font-family: 'Verdana', sans-serif;
+            text-align: center;
+        }
+
+        & p 
+        {
+            text-align: center;
+        }
+    }
+
+    &__subcontainer
+    {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 1rem;
+        max-width: 17rem;
+        width: 90%;
+        gap: 1rem;
+
+        & a
+        {
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-align: right;
+            width: 100%;
+        }
+
+        & input
+        {
+            width: 100%;
+            height: 2.5rem;
+            padding-left: 1rem;
+            background-color: $color_light_grey;
+            border-radius: 0.5rem;
+            border: none;
+
+            &::placeholder
+            {
+                color: $color_dark_grey;
+            }
         }
 
         & button
@@ -93,47 +138,14 @@
             transition: 0.3s;
             border-radius: 0.5rem;
             border: none;
-            margin-top: 1rem;
+            margin-top: 0.5rem;
             height: 2.5rem;
-            width: 17rem;
+            width: 100%;
 
             &:hover
             {
                 color: $color_white;
                 background-color: $color_dark_blue;
-            }
-        }
-    }
-
-    &__subcontainer
-    {
-        display: flex;
-        align-items: center;
-        flex-direction: column;
-        margin-top: 1rem;
-        width: 17rem;
-        gap: 1rem;
-
-        & a
-        {
-            text-decoration: none;
-            font-size: 0.8rem;
-            text-align: right;
-            width: 100%;
-        };
-
-        & input
-        {
-            width: 17rem;
-            height: 2.5rem;
-            padding-left: 1rem;
-            background-color: $color_light_grey;
-            border-radius: 0.5rem;
-            border: none;
-
-            &::placeholder
-            {
-                color: $color_dark_grey;
             }
         }
     }
