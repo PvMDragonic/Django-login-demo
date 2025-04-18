@@ -2,14 +2,7 @@
 
 .home
 {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: linear-gradient(135deg, $color_white, $color_light_blue);
-
-    width: 100vw;
-    height: 100vh;
+    @include default-background(135deg);
 
     &__wrapper
     {
@@ -132,21 +125,7 @@
 
         & button
         {
-            cursor: pointer;
-            font-size: 1rem;
-            background-color: $color_regular_blue;
-            transition: 0.3s;
-            border-radius: 0.5rem;
-            border: none;
-            margin-top: 0.5rem;
-            height: 2.5rem;
-            width: 100%;
-
-            &:hover
-            {
-                color: $color_white;
-                background-color: $color_dark_blue;
-            }
+            @include do-action-button();
         }
     }
 

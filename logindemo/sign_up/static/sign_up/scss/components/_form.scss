@@ -1,0 +1,54 @@
+@use 'assets/scss/global' as *;
+
+.form
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    gap: 1rem;
+
+    & > h1 
+    {
+        width: 100%;
+        text-align: center;
+        font-family: 'Verdana', sans-serif;
+        margin-bottom: 1rem;
+    }
+
+    &__field-container
+    {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        flex-direction: column;
+        width: 80%;
+        gap: 0.25rem;
+
+        & > label, input 
+        {
+            width: 100%;
+            font-family: "Open Sans", sans-serif;
+            text-align: left;
+        }
+
+        & > input 
+        {
+            height: 2.5rem;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            background-color: $color_light_grey;
+            border: none;
+        }
+    }
+
+    & > button
+    {
+        @include do-action-button();
+
+        margin-top: 3rem;
+        max-width: 17rem;
+    }
+}

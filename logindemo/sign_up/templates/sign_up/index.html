@@ -1,0 +1,54 @@
+
+{% load compress %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Open sans Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+    {% compress css %}
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'sign_up/scss/main.scss' %}">
+    {% endcompress %}
+
+    <title>Sign-up</title>
+</head>
+<body>
+    <section class="sign-up">
+        <div class="sign-up__container">
+            <a href="{% url 'home' %}">Go back</a>
+            <form method="post">
+                {% csrf_token %}
+                <div class="form">
+                    <h1>
+                        USER REGISTRATION
+                    </h1>
+                    <div class="form__field-container">
+                        <label for="id_username">Username</label>
+                        {{ form.username }}
+                    </div>
+                        
+                    <div class="form__field-container">
+                        <label for="id_password">Password</label>
+                        {{ form.password }}
+                    </div>
+
+                    <div class="form__field-container">
+                        <label for="id_email">Email</label>
+                        {{ form.email }}
+                    </div>
+
+                    <button type="submit">
+                        REGISTER
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

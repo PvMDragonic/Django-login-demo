@@ -1,0 +1,33 @@
+@use 'assets/scss/global' as *;
+
+.sign-up
+{
+    @include default-background(235deg);
+
+    &__container
+    {
+        display: flex;
+        flex-direction: column;
+        background-color: $color_white;
+        box-shadow: 4px 4px 15px $color_transparent_black;
+        border-radius: 1rem;
+        padding: 1rem;
+        height: 40rem;
+        width: 40rem;
+
+        & a 
+        {
+            text-decoration: none;
+            text-align: left;
+            font-size: 0.8rem;
+            width: 100%;
+        }
+
+        & form 
+        {
+            // Necessary to size the flexbox inside.
+            height: 100%;
+            width: 100%;
+        }
+    }
+}
