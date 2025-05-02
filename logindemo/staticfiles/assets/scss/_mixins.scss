@@ -22,6 +22,16 @@
     padding: 1rem;
     height: 40rem;
     width: 40rem;
+
+    @media screen and (max-width: 43rem) 
+    {
+        width: 90%;
+    }
+
+    @media screen and (max-height: 43rem) 
+    {
+        height: 90%;
+    }
 }
 
 @mixin do-action-button() 
@@ -49,6 +59,11 @@
     text-align: center;
     font-family: 'Verdana', sans-serif;
     margin-bottom: 1rem;
+
+    @media screen and (max-width: 300px) 
+    {
+        font-size: 1.2rem;
+    }
 }
 
 @mixin top-container-anchor()
