@@ -12,6 +12,18 @@
     height: 100vh;
 }
 
+@mixin default-container()
+{
+    display: flex;
+    flex-direction: column;
+    background-color: $color_white;
+    box-shadow: 4px 4px 15px $color_transparent_black;
+    border-radius: 1rem;
+    padding: 1rem;
+    height: 40rem;
+    width: 40rem;
+}
+
 @mixin do-action-button() 
 {
     cursor: pointer;
@@ -29,4 +41,20 @@
         color: $color_white;
         background-color: $color_dark_blue;
     }
+}
+
+@mixin default-title()
+{
+    width: 100%;
+    text-align: center;
+    font-family: 'Verdana', sans-serif;
+    margin-bottom: 1rem;
+}
+
+@mixin top-container-anchor()
+{
+    text-decoration: none;
+    text-align: left;
+    font-size: 0.8rem;
+    width: 100%;
 }

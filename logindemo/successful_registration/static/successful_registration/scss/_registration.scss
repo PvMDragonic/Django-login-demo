@@ -1,0 +1,49 @@
+@use 'assets/scss/global' as *;
+
+.success
+{
+    @include default-background(235deg);
+
+    &__container
+    {
+        @include default-container();
+
+        & > a 
+        {
+            @include top-container-anchor();
+        }
+    }
+
+    &__subcontainer
+    {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        gap: 1rem;
+
+        & > h1 
+        {
+            @include default-title();
+        }
+
+        & > h3
+        {
+            font-size: 1rem;
+            font-family: 'Verdana', sans-serif;
+            text-align: center;
+            margin-bottom: 1rem;
+            width: 100%;
+        }
+    }
+
+    &__button
+    {
+        @include do-action-button();
+        max-width: 17rem;
+    }
+
+
+}

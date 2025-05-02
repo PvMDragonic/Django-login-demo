@@ -6,8 +6,11 @@ def sign_up(request):
         form = CustomUserForm(request.POST)
 
         if form.is_valid():
-            form.save()
-            return redirect('home')
+            user = form.save()
+            request.session['user_id'] = user.id
+            request.session['user_name'] = user.name
+
+            return redirect('successful_registration')
     else:
         form = CustomUserForm()
     
@@ -17,5 +20,5 @@ def sign_up(request):
         { 'form': form }
     )
 
-def home(request):
-    return render(request, 'landing/home.html')
+def successful_registration(request):
+    return render(request, 'successful_registration/index.html')

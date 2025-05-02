@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'compressor',
     'landing',
     'sign_up',
+    'successful_registration'
 ]
 
 MIDDLEWARE = [

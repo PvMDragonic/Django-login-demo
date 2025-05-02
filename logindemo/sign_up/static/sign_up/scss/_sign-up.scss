@@ -6,21 +6,11 @@
 
     &__container
     {
-        display: flex;
-        flex-direction: column;
-        background-color: $color_white;
-        box-shadow: 4px 4px 15px $color_transparent_black;
-        border-radius: 1rem;
-        padding: 1rem;
-        height: 40rem;
-        width: 40rem;
+        @include default-container();
 
         & a 
         {
-            text-decoration: none;
-            text-align: left;
-            font-size: 0.8rem;
-            width: 100%;
+            @include top-container-anchor();
         }
 
         & form 
