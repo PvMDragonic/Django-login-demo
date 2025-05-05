@@ -8,7 +8,7 @@ def sign_up(request):
         if form.is_valid():
             user = form.save()
             request.session['user_id'] = user.id
-            request.session['user_name'] = user.name
+            request.session['user_name'] = user.username
 
             return redirect('successful_registration')
     else:
@@ -16,9 +16,14 @@ def sign_up(request):
     
     return render(
         request, 
-        'sign_up/index.html', 
+        'sign_up/form.html', 
         { 'form': form }
     )
 
 def successful_registration(request):
-    return render(request, 'successful_registration/index.html')
+    user_name = request.session.get('user_name', 'Guest')
+    return render(
+        request, 
+        'sign_up/successful.html', 
+        { 'user_name': user_name }
+    )
