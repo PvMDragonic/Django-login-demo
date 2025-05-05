@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'compressor',
     'landing',
-    'sign_up',
+    'users',
 ]
 
 MIDDLEWARE = [
