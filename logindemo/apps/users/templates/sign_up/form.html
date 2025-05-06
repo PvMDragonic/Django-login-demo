@@ -22,7 +22,7 @@
     <section class="sign-up">
         <div class="sign-up__container">
             <a href="{% url 'home' %}">Go back</a>
-            <form method="post">
+            <form method="post" novalidate>
                 {% csrf_token %}
                 <div class="form">
                     <h1>
