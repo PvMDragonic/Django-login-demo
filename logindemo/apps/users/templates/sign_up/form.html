@@ -31,16 +31,37 @@
                     <div class="form__field-container">
                         <label for="id_username">Username</label>
                         {{ form.username }}
+                        {% if form.username.errors %}
+                            <div class="form__error">
+                                {% for error in form.username.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                     </div>
                         
                     <div class="form__field-container">
                         <label for="id_password">Password</label>
                         {{ form.password }}
+                        {% if form.password.errors %}
+                            <div class="form__error">
+                                {% for error in form.password.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                     </div>
 
                     <div class="form__field-container">
                         <label for="id_email">Email</label>
                         {{ form.email }}
+                        {% if form.email.errors %}
+                            <div class="form__error">
+                                {% for error in form.email.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
                     </div>
 
                     <button type="submit">

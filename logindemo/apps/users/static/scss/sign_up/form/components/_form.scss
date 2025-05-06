@@ -41,6 +41,16 @@
         }
     }
 
+    &__error
+    {
+        margin-top: 0.5rem;
+        width: 100%;
+        font-family: "Open Sans", sans-serif;
+        text-align: center;
+        font-style: italic;
+        color: red;
+    }
+
     & > button
     {
         @include do-action-button();
