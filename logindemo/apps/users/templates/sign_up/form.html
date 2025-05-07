@@ -53,6 +53,18 @@
                     </div>
 
                     <div class="form__field-container">
+                        <label for="id_password">Repeat password</label>
+                        {{ form.password_repeat }}
+                        {% if form.password_repeat.errors %}
+                            <div class="form__error">
+                                {% for error in form.password_repeat.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="form__field-container">
                         <label for="id_email">Email</label>
                         {{ form.email }}
                         {% if form.email.errors %}

@@ -4,19 +4,26 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.password_validation import validate_password
 
 class CustomUserForm(forms.ModelForm):
+    # Outside Meta because it's not saved to the database.
+    password_repeat = forms.CharField(
+        label = "Repeat password",
+        widget = forms.PasswordInput(),
+        required = True
+    )
+
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'password']
+        fields = ['username', 'password', 'email']
         error_messages = {
             'username': {
                 'required': "You must enter a username."
             },
+            'password': {
+                'required': "You must enter a password."
+            },
             'email': {
                 'required': "You must enter an email.",
                 'invalid': "You must enter a valid email address."
-            },
-            'password': {
-                'required': "You must enter a password."
             }
         }
         widgets = {
@@ -32,6 +39,16 @@ class CustomUserForm(forms.ModelForm):
 
         validate_password(password, user = self.instance)
         return password
+    
+    def clean(self):
+        cleaned_data = super().clean()
+        password = cleaned_data.get('password')
+        password_repeat = cleaned_data.get('password_repeat')
+
+        if password and password_repeat and password != password_repeat:
+            self.add_error('password_repeat', "Passwords do not match.")
+
+        return cleaned_data
 
     def save(self, commit = True):
         user = super().save(commit = False)
