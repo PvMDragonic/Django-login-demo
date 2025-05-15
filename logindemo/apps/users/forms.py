@@ -2,6 +2,8 @@ from django import forms
 from .models import CustomUser
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.password_validation import validate_password
+from django.contrib.auth import get_user_model
+from django.contrib.auth.forms import PasswordResetForm
 
 class CustomUserForm(forms.ModelForm):
     # Outside Meta because it's not saved to the database.
@@ -58,3 +60,14 @@ class CustomUserForm(forms.ModelForm):
             user.save()
 
         return user
+    
+class CustomPasswordResetForm(PasswordResetForm):
+    def get_users(self, email):
+        # Removes the 'is_active = True' default check.
+        active_users = get_user_model()._default_manager.filter(
+            email__iexact = email
+        )
+
+        return (
+            user for user in active_users if user.has_usable_password()
+        )

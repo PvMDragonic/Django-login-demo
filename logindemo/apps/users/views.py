@@ -10,7 +10,7 @@ def sign_up(request):
             request.session['user_id'] = user.id
             request.session['user_name'] = user.username
 
-            return redirect('successful_registration')
+            return redirect('sign_up_completed')
     else:
         form = CustomUserForm()
     
@@ -20,7 +20,7 @@ def sign_up(request):
         { 'form': form }
     )
 
-def successful_registration(request):
+def sign_up_completed(request):
     user_name = request.session.get('user_name', 'Guest')
     return render(
         request, 

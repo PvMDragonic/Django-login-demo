@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+            
+        <title>Change Password</title>
+    </head>
+    <body>
+        <h2>Change Your Password</h2>
+
+        <form method="post" novalidate>
+            {% csrf_token %}
+
+            <div>
+                <label for="{{ form.new_password1.id_for_label }}">New password</label>
+                {{ form.new_password1 }}
+                {% if form.new_password1.errors %}
+                    <div class="error">{{ form.new_password1.errors }}</div>
+                {% endif %}
+            </div>
+
+            <div>
+                <label for="{{ form.new_password2.id_for_label }}">Confirm new password</label>
+                {{ form.new_password2 }}
+                {% if form.new_password2.errors %}
+                    <div class="error">{{ form.new_password2.errors }}</div>
+                {% endif %}
+            </div>
+
+            <button type="submit">
+                Change Password
+            </button>
+
+            {% if form.non_field_errors %}
+            <div class="error">
+                {{ form.non_field_errors }}
+            </div>
+            {% endif %}
+        </form>
+    </body>
+</html>
