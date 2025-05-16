@@ -1,0 +1,147 @@
+@use './variables' as *;
+
+@mixin default-background($degrees: 135deg)
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: linear-gradient($degrees, $color_white, $color_light_blue);
+
+    width: 100vw;
+    height: 100vh;
+}
+
+@mixin default-container()
+{
+    display: flex;
+    flex-direction: column;
+    background-color: $color_white;
+    box-shadow: 4px 4px 15px $color_transparent_black;
+    border-radius: 1rem;
+    padding: 1rem;
+    height: 40rem;
+    width: 40rem;
+
+    @media screen and (max-width: 43rem) 
+    {
+        width: 90%;
+    }
+
+    @media screen and (max-height: 43rem) 
+    {
+        height: 90%;
+    }
+}
+
+@mixin default-form-container()
+{
+    @include default-container();
+
+    & > a:first-child
+    {
+        @include top-container-anchor();
+    }
+
+    // Necessary to size the flexbox inside, as
+    // <div class="form"> sits inside a <form>.
+    & form 
+    {
+        height: 100%;
+        width: 100%;
+    }
+}
+
+@mixin default-form()
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    gap: 1rem;
+}
+
+@mixin default-form-field()
+{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    width: 80%;
+    gap: 0.25rem;
+
+    & > label, input 
+    {
+        width: 100%;
+        font-family: "Open Sans", sans-serif;
+        text-align: left;
+    }
+
+    & > input 
+    {
+        height: 2.5rem;
+        padding: 0.5rem;
+        border-radius: 0.5rem;
+        background-color: $color_light_grey;
+        border: none;
+    }
+}
+
+@mixin do-action-button() 
+{
+    // For when this is used for an <a> instead of a <button>.
+    display: inline-flex;
+    align-items: center; 
+    justify-content: center;
+    text-decoration: none;
+
+    cursor: pointer;
+    text-transform: uppercase;
+    background-color: $color_regular_blue;
+    color: $color_dark_grey;
+    font-size: 1rem;
+    transition: 0.3s;
+    border-radius: 0.5rem;
+    border: none;
+    margin-top: 0.5rem;
+    height: 2.5rem;
+    width: 100%;
+
+    &:hover
+    {
+        color: $color_white;
+        background-color: $color_dark_blue;
+    }
+}
+
+@mixin form-submit-button()
+{
+    @include do-action-button();
+
+    margin-top: 3rem;
+    max-width: 17rem;
+    width: 80%; // Aligns with input fields on smaller screens.
+}
+
+@mixin default-title()
+{
+    width: 100%;
+    text-align: center;
+    font-family: 'Verdana', sans-serif;
+    margin-bottom: 1rem;
+
+    @media screen and (max-width: 300px) 
+    {
+        font-size: 1.2rem;
+    }
+}
+
+@mixin top-container-anchor()
+{
+    text-decoration: none;
+    text-align: left;
+    font-size: 0.8rem;
+    width: 100%;
+}

@@ -1,4 +1,5 @@
-
+{% load compress %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -10,39 +11,54 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
             
+        {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/password_change/form/main.scss' %}">
+        {% endcompress %}
+
         <title>Change Password</title>
     </head>
     <body>
-        <h2>Change Your Password</h2>
+        <section class="password-change-form">
+            <div class="password-change-form__container">
+                <a href="{% url 'home' %}">Return Home</a>
+                
+                <form method="post" novalidate>
+                    {% csrf_token %}
+                    <div class="form">
+                        <h1>Change Your Password</h1>
+    
+                        <div class="form__field-container">
+                            <label for="{{ form.new_password1.id_for_label }}">New password</label>
+                            {{ form.new_password1 }}
+                            {% if form.new_password1.errors %}
+                                <div class="form__error">
+                                    {{ form.new_password1.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+    
+                        <div class="form__field-container">
+                            <label for="{{ form.new_password2.id_for_label }}">Confirm new password</label>
+                            {{ form.new_password2 }}
+                            {% if form.new_password2.errors %}
+                                <div class="form__error">
+                                    {{ form.new_password2.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+        
+                        {% if form.non_field_errors %}
+                        <div class="form__error">
+                            {{ form.non_field_errors }}
+                        </div>
+                        {% endif %}
 
-        <form method="post" novalidate>
-            {% csrf_token %}
-
-            <div>
-                <label for="{{ form.new_password1.id_for_label }}">New password</label>
-                {{ form.new_password1 }}
-                {% if form.new_password1.errors %}
-                    <div class="error">{{ form.new_password1.errors }}</div>
-                {% endif %}
+                        <button type="submit">
+                            Confirm
+                        </button>
+                    </div>
+                </form>
             </div>
-
-            <div>
-                <label for="{{ form.new_password2.id_for_label }}">Confirm new password</label>
-                {{ form.new_password2 }}
-                {% if form.new_password2.errors %}
-                    <div class="error">{{ form.new_password2.errors }}</div>
-                {% endif %}
-            </div>
-
-            <button type="submit">
-                Change Password
-            </button>
-
-            {% if form.non_field_errors %}
-            <div class="error">
-                {{ form.non_field_errors }}
-            </div>
-            {% endif %}
-        </form>
+        </section>
     </body>
 </html>

@@ -1,0 +1,42 @@
+@use '../base/mixins' as *;
+
+.notice
+{
+    @include default-background(180deg);
+
+    &__container
+    {
+        @include default-form-container();
+    }
+
+    &__text
+    {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+
+        & > h1
+        {
+            @include default-title();
+
+            font-size: 1.2rem;
+        }
+
+        & > p 
+        {
+            font-size: 0.9rem;
+            text-align: center;
+            font-family: "Open Sans", sans-serif;
+        }
+    }
+    
+    &__button
+    {
+        @include form-submit-button();
+
+        max-width: 17rem;
+    }
+}

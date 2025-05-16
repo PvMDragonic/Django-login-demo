@@ -1,9 +1,39 @@
+{% load compress %}
+{% load static %}
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Reset Password</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Open sans Google Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+        {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/password_change/sent/main.scss' %}">
+        {% endcompress %}
+
+        <title>Change Password</title>
     </head>
     <body>
-        <h2>An email was sent to the address you provived.</h2>
+        <section class="notice">
+            <div class="notice__container">
+                <a href="{% url 'password_change' %}">Go back</a>
+                
+                <div class="notice__text">
+                    <h1>An email was sent to the provided address, if it exists.</h1>
+                    <p>Remember to check your spam inbox.</p>
+
+                    <a 
+                        class="notice__button"
+                        href="{% url 'home' %}"
+                    >
+                        Return Home
+                    </a>
+                </div>
+            </div>
+        </section>
     </body>
 </html>

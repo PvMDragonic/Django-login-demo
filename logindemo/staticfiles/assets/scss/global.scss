@@ -1,3 +1,5 @@
-@forward './variables';
-@forward './mixins';
-@use './reset';
+@forward './base/variables';
+@forward './base/mixins';
+@use './base/reset';
+@use './components/form';
+@use './components/notice';
