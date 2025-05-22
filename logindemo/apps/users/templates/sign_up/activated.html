@@ -13,27 +13,21 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
     {% compress css %}
-    <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/sign_up/successful_registration/main.scss' %}">
+    <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/sign_up/activated/main.scss' %}">
     {% endcompress %}
 
-    <title>Successful registration</title>
+    <title>Account activated</title>
 </head>
 <body>
-    <section class="success">
-        <div class="success__container"> 
+    <section class="notice">
+        <div class="notice__container">
             <a href="{% url 'home' %}">Return Home</a>
-            <div class="success__subcontainer">
-                <h1>SUCCESSFUL REGISTRATION</h1>
-
-                {% if user_name %}
-                    <h3>Welcome aboard, {{ user_name }}!</h3>
-                {% else %}
-                    <h3>Welcome aboard, guest!</h3>
-                {% endif %}
-
-                <button class="success__button">
+            <div class="notice__text">
+                <h1>ACCOUNT ACTIVATED!</h1>
+                <p>You may proceed to login now, {{ user_name }}.</p>
+                <a class="notice__button">
                     CONTINUE
-                </button>
+                </a>
             </div>
         </div>
     </section>

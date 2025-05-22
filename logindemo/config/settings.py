@@ -79,6 +79,8 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # FAKE EMAIL
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'bruh@localhost'
+ACCOUNT_ACTIVATION_DAYS = 1
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases

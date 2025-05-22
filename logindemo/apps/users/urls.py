@@ -5,7 +5,7 @@ from . import views
 urlpatterns = [
     path(
         'sign_up/', 
-        views.sign_up, 
+        views.sign_up_form, 
         name = 'sign_up'
     ),
 
@@ -13,6 +13,18 @@ urlpatterns = [
         'sign_up/completed', 
         views.sign_up_completed, 
         name = 'sign_up_completed'
+    ),
+
+    path(
+        'sign_up/resend/<uidb64>', 
+        views.sign_up_resend, 
+        name = 'sign_up_resend'
+    ),
+
+    path(
+        'sign_up/activated/<uidb64>/<token>', 
+        views.sign_up_activated, 
+        name = 'sign_up_activated'
     ),
 
     path('password_change/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(

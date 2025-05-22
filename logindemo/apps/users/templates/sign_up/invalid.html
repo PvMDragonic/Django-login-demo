@@ -1,0 +1,54 @@
+
+{% load compress %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Open sans Google Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+        {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/sign_up/invalid/main.scss' %}">
+        {% endcompress %}
+
+        <title>Invalid activation</title>
+    </head>
+<body>
+    <section class="notice">
+        <div class="notice__container">
+            {% if reason == "expired" %}
+                <a href="{% url 'home' %}">Return Home</a>
+                <div class="notice__text">
+                    <h1>Activation link is expired.</h1>
+                    <p>Need a new one?</p>
+                    <a href="{% url 'sign_up_resend' uidb64=uid %}" class="notice__button">
+                        Resend activation
+                    </a>
+                </div>
+            {% elif reason == "already_activated" %}
+                <a href="{% url 'home' %}">Return Home</a>
+                <div class="notice__text">
+                    <h1>This account is already activated.</h1>
+                    <p>You may proceed to login.</p>
+                    <a class="notice__button">
+                        LOGIN
+                    </a>
+                </div>
+            {% else %}
+                <div class="notice__text">
+                    <h1>This is an invalid activation link.</h1>
+                    <p>Contact an admin if you believe this is incorrect.</p>
+                    <a href="{% url 'home' %}" class="notice__button">
+                        Return Home
+                    </a>
+                </div>
+            {% endif %}
+        </div>
+    </section>
+</body>
+</html>
