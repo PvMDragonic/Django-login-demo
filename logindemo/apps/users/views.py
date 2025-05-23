@@ -1,4 +1,5 @@
 from django.contrib.sites.shortcuts import get_current_site
+from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 from django.utils.http import urlsafe_base64_encode
 from django.utils.http import urlsafe_base64_decode
@@ -57,37 +58,52 @@ def sign_up_completed(request):
         'user_email': request.session.get('email', 'unknown@email.com') 
     })
 
-def sign_up_activated(request, uidb64, token):
+def sign_up_activate(request, uidb64, token):
+    invalid_reason = None
+    uid = None
+    user = None
+
     try:
         uid = urlsafe_base64_decode(uidb64).decode()
         user = CustomUser.objects.get(pk = uid)
     except (CustomUser.DoesNotExist, ValueError, OverflowError, TypeError):
-        user = None
-
-    if user is None:
-        return render(request, 'sign_up/invalid.html', {
-            'reason': 'invalid_user'
-        })
+        invalid_reason = 'invalid_user'
     
-    if user.is_active:
-        return render(request, 'sign_up/invalid.html', {
-            'reason': 'already_activated'
-        })
+    if not invalid_reason:
+        if user.is_active:
+            invalid_reason = 'already_activated'
+        elif not default_token_generator.check_token(user, token):
+            invalid_reason = 'expired'
 
-    if not default_token_generator.check_token(user, token):
-        return render(request, 'sign_up/invalid.html', { 
-            'reason': 'expired',
+    if invalid_reason:
+        request.session['activation_error'] = {
+            'reason': invalid_reason,
             'uid': uidb64,
-            'email': user.email 
-        })
+            'email': user.email if user else None
+        }
+
+        return redirect('sign_up_invalid')
 
     user.is_active = True
     user.save()
 
     login(request, user)
 
+    return redirect('sign_up_activated')
+
+def sign_up_activate_invalid(request):
+    activation_error = request.session.get('activation_error')
+
+    return render(request, 'sign_up/invalid.html', {
+        'reason': activation_error['reason'],
+        'uid': activation_error['uid'],
+        'email': activation_error['email']
+    })
+
+@login_required
+def sign_up_activate_success(request):
     return render(request, 'sign_up/activated.html', { 
-        'user_name': user.username 
+        'user_name': request.user.username 
     })
     
 def sign_up_resend(request, uidb64):

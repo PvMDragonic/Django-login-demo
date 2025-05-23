@@ -2,4 +2,4 @@ Hi {{ user.username }},
 
 Please click the link below to activate your account:
 
-http://{{ domain }}{% url 'sign_up_activated' uidb64=uid token=token %}
+http://{{ domain }}{% url 'sign_up_activate' uidb64=uid token=token %}

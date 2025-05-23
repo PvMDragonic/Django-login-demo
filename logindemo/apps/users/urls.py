@@ -22,9 +22,21 @@ urlpatterns = [
     ),
 
     path(
-        'sign_up/activated/<uidb64>/<token>', 
-        views.sign_up_activated, 
+        'sign_up/activate/<uidb64>/<token>', 
+        views.sign_up_activate, 
+        name = 'sign_up_activate'
+    ),
+
+    path(
+        'sign_up/activated', 
+        views.sign_up_activate_success, 
         name = 'sign_up_activated'
+    ),
+
+    path(
+        'sign_up/invalid',
+        views.sign_up_activate_invalid,
+        name = 'sign_up_invalid'
     ),
 
     path('password_change/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(
