@@ -1,10 +1,16 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from users.forms import CustomPasswordResetForm
+
+from dashboard.views import dashboard_start
 from . import views
 
 urlpatterns = [
     path('', views.home, name = 'home'),
+
+    path('login/', views.dashboard_login, name = 'login'),
+
+    path('dashboard/', dashboard_start, name = 'dashboard'),
     
     path('password_change/', auth_views.PasswordResetView.as_view(
         form_class = CustomPasswordResetForm,

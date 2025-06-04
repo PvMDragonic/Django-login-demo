@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'compressor',
     'apps.landing',
     'apps.users',
+    'apps.dashboard',
 ]
 
 MIDDLEWARE = [
@@ -92,6 +93,10 @@ DATABASES = {
     }
 }
 
+# Something something login redirect
+
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/dashboard/'
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

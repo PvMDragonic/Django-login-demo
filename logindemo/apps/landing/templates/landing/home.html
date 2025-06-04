@@ -26,23 +26,36 @@
                 <p class="home__subtitle">
                     Reading this message is XP waste.
                 </p>
-    
-                <div class="home__subcontainer">
+
+                <form 
+                    method="post" 
+                    action="{% url 'login' %}" 
+                    class="home__subcontainer"
+                    novalidate
+                >
+                    {% csrf_token %}
+
                     <input 
                         type="text"
-                        placeholder="Email address"
+                        name="email"
+                        placeholder="Email"
+                        required
                     />
                     <input 
                         type="password"
+                        name="password"
                         placeholder="Password"
+                        required
                     />
+
                     <a href="{% url 'password_change' %}">
                         Forgot password?
                     </a>
-                    <button type="button">
+
+                    <button type="submit">
                         LOGIN
                     </button>
-                </div>
+                </form>
 
                 <p class="home__no-acc">
                     Don't have an account?
