@@ -25,8 +25,8 @@
             <div class="notice__text">
                 <h1>ACCOUNT ACTIVATED!</h1>
                 <p>You may proceed to login now, {{ user_name }}.</p>
-                <a class="notice__button">
-                    CONTINUE
+                <a href="{% url 'dashboard' %}" class="notice__button">
+                    LOGIN
                 </a>
             </div>
         </div>

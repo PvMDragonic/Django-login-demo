@@ -1,5 +1,7 @@
 from django.contrib.auth import views as auth_views
 from django.urls import path
+
+from dashboard.views import dashboard_start
 from . import views
 
 urlpatterns = [
@@ -37,6 +39,12 @@ urlpatterns = [
         'sign_up/invalid',
         views.sign_up_activate_invalid,
         name = 'sign_up_invalid'
+    ),
+
+    path(
+        'dashboard/', 
+        dashboard_start, 
+        name = 'dashboard'
     ),
 
     path('password_change/<uidb64>/<token>', auth_views.PasswordResetConfirmView.as_view(
