@@ -66,6 +66,14 @@
                         required
                     />
 
+                    {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                        <li>{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+
                     <a href="{% url 'password_change' %}">
                         Forgot password?
                     </a>

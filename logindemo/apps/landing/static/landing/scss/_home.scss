@@ -108,6 +108,13 @@
             width: 100%;
         }
 
+        & ul, li
+        {
+            list-style-type: none;
+            font-size: 0.8rem;
+            color: red;
+        }
+
         & input
         {
             width: 100%;

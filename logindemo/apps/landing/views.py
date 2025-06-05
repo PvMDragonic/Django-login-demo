@@ -16,8 +16,10 @@ def dashboard_login(request):
         if user is not None and user.is_active:
             login(request, user)
             return redirect('dashboard') 
+        else:
+            messages.error(request, 'Invalid email or password.')
 
-    return render(request, 'landing/home.html')
+    return redirect('home')
 
 def user_logout(request):
     user = request.user
