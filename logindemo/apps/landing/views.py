@@ -6,6 +6,9 @@ def home(request):
     return render(request, 'landing/home.html')
 
 def dashboard_login(request):
+    if request.method == 'GET':
+        messages.error(request, 'You must first login!')
+
     if request.method == 'POST':
         user = authenticate(
             request, 
