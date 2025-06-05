@@ -10,6 +10,8 @@ urlpatterns = [
 
     path('login/', views.dashboard_login, name = 'login'),
 
+    path('logout/', views.user_logout, name = 'logout'),
+
     path('dashboard/', dashboard_start, name = 'dashboard'),
     
     path('password_change/', auth_views.PasswordResetView.as_view(

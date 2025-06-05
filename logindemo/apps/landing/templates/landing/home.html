@@ -20,17 +20,35 @@
     <section class="home">
         <div class="home__wrapper">
             <div class="home__container home__container--login">
+                {% if user.is_authenticated %}
                 <h3>
-                    Welcome back!
+                    Welcome back, {{ user.username }}!
                 </h3>
+                {% else %}
+                <h3>
+                    Welcome!
+                </h3>
+                {% endif %}
+
                 <p class="home__subtitle">
                     Reading this message is XP waste.
                 </p>
 
+                {% if user.is_authenticated %}
+                    <div class="home__logged-container">
+                        <a class="home__button" href="{% url 'dashboard' %}">
+                            LOGIN
+                        </a>
+
+                        <a class="home__button" href="{% url 'logout' %}">
+                            LOGOUT
+                        </a>
+                    </div>
+                {% else %}
                 <form 
                     method="post" 
                     action="{% url 'login' %}" 
-                    class="home__subcontainer"
+                    class="home__login-form"
                     novalidate
                 >
                     {% csrf_token %}
@@ -52,7 +70,7 @@
                         Forgot password?
                     </a>
 
-                    <button type="submit">
+                    <button class="home__button">
                         LOGIN
                     </button>
                 </form>
@@ -66,6 +84,7 @@
                 >
                     SIGN UP
                 </a>
+                {% endif %}
             </div>
             <div class="home__container home__container--message">
                 <h1>The best login system ever!</h1>

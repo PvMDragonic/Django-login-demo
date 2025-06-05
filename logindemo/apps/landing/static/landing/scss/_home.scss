@@ -90,7 +90,7 @@
         }
     }
 
-    &__subcontainer
+    &__login-form
     {
         display: flex;
         align-items: center;
@@ -122,11 +122,22 @@
                 color: $color_dark_grey;
             }
         }
+    }
 
-        & button
-        {
-            @include do-action-button();
-        }
+    &__logged-container
+    {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        margin-top: 3rem;
+        max-width: 17rem;
+        width: 90%;
+        gap: 1rem;
+    }
+
+    &__button
+    {
+        @include do-action-button();
     }
 
     &__subtitle
