@@ -6,10 +6,10 @@ from django.utils.http import urlsafe_base64_decode
 from django.utils.encoding import force_bytes
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
-from django.contrib.auth import login
 from django.contrib.auth.tokens import default_token_generator
 from django.conf import settings
 
+from config.utils import handle_login
 from users.models import CustomUser
 from .forms import CustomUserForm
 
@@ -87,7 +87,7 @@ def sign_up_activate(request, uidb64, token):
     user.is_active = True
     user.save()
 
-    login(request, user)
+    handle_login(request, user)
 
     return redirect('sign_up_activated')
 

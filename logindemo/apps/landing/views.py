@@ -1,6 +1,8 @@
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, logout
 from django.shortcuts import render, redirect
 from django.contrib import messages
+
+from config.utils import handle_login
 
 def home(request):
     return render(request, 'landing/home.html')
@@ -17,7 +19,7 @@ def dashboard_login(request):
         )
 
         if user is not None and user.is_active:
-            login(request, user)
+            handle_login(request, user)
             return redirect('dashboard') 
         else:
             messages.error(request, 'Invalid email or password.')

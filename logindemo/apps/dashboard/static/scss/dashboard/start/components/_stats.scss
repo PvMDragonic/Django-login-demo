@@ -1,0 +1,22 @@
+.stats
+{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.25rem;
+    height: 100%;
+
+    &__text
+    {
+        text-align: center;
+        font-family: "Open Sans", sans-serif;
+        font-size: 1.5rem;
+        width: 100%;
+
+        & span 
+        {
+            text-decoration: underline;
+        }
+    }
+}
