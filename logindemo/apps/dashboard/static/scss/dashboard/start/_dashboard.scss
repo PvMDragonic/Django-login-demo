@@ -1,0 +1,43 @@
+@use 'assets/scss/global' as *;
+
+.dashboard
+{
+    @include default-background(45deg);
+    
+    &__container
+    {
+        display: flex;
+        flex-direction: column;
+        background-color: $color_white;
+        box-shadow: 4px 4px 15px $color_transparent_black;
+        border-radius: 1rem;
+        padding: 1rem;
+        height: 80%;
+        width: 80%;
+    }
+
+    &__top-nav
+    {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 3rem;
+
+        & > a
+        {
+            text-decoration: none;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+    }
+
+    &__title
+    {
+        text-align: center;
+        font-family: 'Verdana', sans-serif;
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        width: 100%;
+    }
+}

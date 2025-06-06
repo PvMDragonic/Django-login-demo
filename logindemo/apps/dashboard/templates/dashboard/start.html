@@ -1,3 +1,5 @@
+{% load compress %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -9,9 +11,27 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 
+        {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/dashboard/start/main.scss' %}">
+        {% endcompress %}
+
         <title>Dashboard</title>
     </head>
 <body>
-    Thou art logged in, {{ username }}.
+    <section class="dashboard">
+        <div class="dashboard__container">
+            <div class="dashboard__top-nav">
+                <a href="{% url 'home' %}">
+                    Return Home
+                </a>
+                <a href="{% url 'home' %}">
+                    Delete account
+                </a>
+            </div>
+            <h1 class="dashboard__title">
+                Thou art logged in, {{ request.user.username }}.
+            </h1>
+        </div>
+    </section>
 </body>
 </html>
