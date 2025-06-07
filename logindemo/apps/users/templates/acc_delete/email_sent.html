@@ -1,0 +1,39 @@
+{% load compress %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Open sans Google Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+        {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/acc_deletion/email_sent/main.scss' %}">
+        {% endcompress %}
+
+        <title>Account deletion</title>
+    </head>
+    <body>
+        <section class="mail-notice">
+            <div class="mail-notice__container">
+                <a href="{% url 'home' %}">Return Home</a>
+                <div class="mail-notice__subcontainer">
+                    <h1>ACCOUNT DELETION REQUEST</h1>
+                    <h3>
+                        A confirmation email was sent to <span>{{ request.user.email }}</span>,
+                        <br/>
+                        click it to finalize the deletion.
+                    </h3>
+                    <p>Remember to check your spam inbox.</p>
+                    <a class="mail-notice__button" href="{% url 'dashboard' %}">
+                        Dashboard
+                    </a>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>

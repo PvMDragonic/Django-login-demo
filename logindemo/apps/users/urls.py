@@ -54,5 +54,17 @@ urlpatterns = [
 
     path('password_change/completed', auth_views.PasswordResetCompleteView.as_view(
         template_name = 'password_change/completed.html'
-    ), name = 'password_change_completed')
+    ), name = 'password_change_completed'),
+
+    path(
+        'deletion/email_sent', 
+        views.acc_deletion_email, 
+        name = 'deletion_email'
+    ),
+
+    path(
+        'deletion/<uidb64>/<token>', 
+        views.acc_deletion_completed, 
+        name = 'acc_deletion_completed'
+    )
 ]

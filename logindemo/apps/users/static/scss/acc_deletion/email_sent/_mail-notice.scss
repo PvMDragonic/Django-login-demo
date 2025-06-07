@@ -1,0 +1,64 @@
+@use 'assets/scss/global' as *;
+
+.mail-notice
+{
+    @include default-background(235deg);
+
+    &__container
+    {
+        @include default-container();
+
+        & > a:first-child
+        {
+            @include top-container-anchor();
+        }
+    }
+
+    &__subcontainer
+    {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+        gap: 1rem;
+
+        & > h1 
+        {
+            @include default-title();
+        }
+
+        & > p
+        {
+            text-align: center;
+            font-family: "Open Sans", sans-serif;
+            margin-bottom: 2rem;
+        }
+
+        & span 
+        {
+            font-weight: normal;
+            font-family: 'Roboto', sans-serif;
+            background-color: $color_light_grey;
+            border-radius: 0.5rem;
+            padding: 0.3rem;
+        }
+
+        & > h3
+        {
+            font-size: 1rem;
+            font-family: 'Verdana', sans-serif;
+            line-height: 1.5rem;
+            text-align: center;
+            width: 100%;
+        }
+    }
+
+    &__button
+    {
+        @include do-action-button();
+
+        max-width: 17rem;
+    }
+}

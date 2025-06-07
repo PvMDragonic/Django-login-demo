@@ -129,3 +129,44 @@ def sign_up_resend(request, uidb64):
         )
 
     return render(request, 'sign_up/resend.html')
+
+@login_required
+def acc_deletion(request):
+    return render(request, 'acc_delete/request.html')
+
+@login_required
+def acc_deletion_email(request):
+    user = request.user
+    message = render_to_string('acc_delete/email.html', {
+        'user': user,
+        'protocol': 'https' if request.is_secure() else 'http',
+        'domain': get_current_site(request).domain,
+        'uid': urlsafe_base64_encode(force_bytes(user.pk)),
+        'token': default_token_generator.make_token(user)
+    })
+
+    send_mail(
+        'Confirm Your Account Deletion', 
+        message, 
+        settings.DEFAULT_FROM_EMAIL, 
+        [user.email]
+    )
+
+    return render(request, 'acc_delete/email_sent.html')
+
+@login_required
+def acc_deletion_completed(request, uidb64, token):
+    try:
+        uid = urlsafe_base64_decode(uidb64).decode()
+        user = CustomUser.objects.get(pk=uid)
+    except (CustomUser.DoesNotExist, ValueError, OverflowError, TypeError):
+        user = None
+
+    if user is not None and default_token_generator.check_token(user, token):
+        username = user.username
+        user.delete()
+        return render(request, 'acc_delete/completed.html', {
+            'username': username
+        })
+    else:
+        return render(request, 'acc_delete/invalid.html')

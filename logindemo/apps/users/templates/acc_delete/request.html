@@ -1,0 +1,36 @@
+{% load compress %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <!-- Open sans Google Font -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+
+        {% compress css %}
+        <link rel="stylesheet" type="text/x-scss" href="{% static 'scss/acc_deletion/request/main.scss' %}">
+        {% endcompress %}
+
+        <title>Account deletion</title>
+    </head>
+    <body>
+        <section class="notice">
+            <div class="notice__container">
+                <a href="{% url 'home' %}">
+                    Go back
+                </a>
+                <div class="notice__text">
+                    <h1>ACCOUNT DELETION REQUEST</h1>
+                    <p>Are you sure about deleting your account?</p>
+                    <a href="{% url 'deletion_email' %}" class="notice__button">
+                        CONTINUE
+                    </a>
+                </div>
+            </div>
+        </section>
+    </body>
+</html>
