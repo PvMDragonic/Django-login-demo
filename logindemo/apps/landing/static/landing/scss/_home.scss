@@ -140,6 +140,14 @@
         max-width: 17rem;
         width: 90%;
         gap: 1rem;
+
+        & > a:last-child // Logout
+        {
+            text-decoration: none;
+            font-size: 0.8rem;
+            text-align: center;
+            width: 100%;
+        }
     }
 
     &__button

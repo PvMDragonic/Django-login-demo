@@ -24,24 +24,26 @@
                 <h3>
                     Welcome back, {{ user.username }}!
                 </h3>
+                <p class="home__subtitle">
+                    You may proceed to your dashboard.
+                </p>
                 {% else %}
                 <h3>
                     Welcome!
                 </h3>
-                {% endif %}
-
                 <p class="home__subtitle">
                     Reading this message is XP waste.
                 </p>
+                {% endif %} 
 
                 {% if user.is_authenticated %}
                     <div class="home__logged-container">
                         <a class="home__button" href="{% url 'dashboard' %}">
-                            LOGIN
+                            CONTINUE
                         </a>
 
-                        <a class="home__button" href="{% url 'logout' %}">
-                            LOGOUT
+                        <a href="{% url 'logout' %}">
+                            Logout
                         </a>
                     </div>
                 {% else %}
