@@ -33,11 +33,33 @@
             </h1>
             
             <div class="stats">
-                <p class="stats__text">Your account was created at <span>{{ signup_date }} ({{ days_since_signup }})</span>.</p>
-                <p class="stats__text">Your last login was at <span>{{ previous_login }} ({{ previous_login_days }})</span>.</p>
+                <div class="stats__container">
+                    <p class="stats__text">Account creation:</p>
+                    <p class="stats__text">
+                        <span>{{ signup_date }}</span> ({{ days_since_signup }})
+                    </p>
+                </div>
+                <div class="stats__container">
+                    <p class="stats__text">
+                        Last login:
+                    </p>
+                    <p class="stats__text">
+                        <span>{{ previous_login }}</span> ({{ previous_login_days }})
+                    </p>
+                </div>
                 <br/>
-                <p class="stats__text">You've logged-in <span>{{ request.user.login_count }} times</span>.</p>
-                <p class="stats__text">You've seen this page <span>{{ request.user.dashboard_reloads }} times</span>.</p>
+                <div class="stats__container">
+                    <p class="stats__text">Times logged-in:</p>
+                    <p class="stats__text">   
+                        <span>{{ request.user.login_count }} times</span>
+                    </p>
+                </div>
+                <div class="stats__container">
+                    <p class="stats__text">Dashboard refreshed:</p>
+                    <p class="stats__text">
+                        <span>{{ request.user.dashboard_reloads }} times</span>
+                    </p>
+                </div>
             </div>
         </div>
     </section>

@@ -4,10 +4,10 @@ from django.utils.timezone import now
 def handle_login(request, user):
     right_now = now()
     previous_login = user.last_login or right_now
-    previous_login_days = (previous_login - right_now).days
+    previous_login_days = (previous_login.date() - right_now.date()).days
 
     request.session['previous_login'] = previous_login.strftime("%Y/%m/%d %H:%M:%S")
-    request.session['previous_login_days'] = f'{previous_login_days} days ago' if previous_login_days > 0 else 'Today'
+    request.session['previous_login_days'] = f'{previous_login_days} day(s) ago' if previous_login_days > 0 else 'Today'
     
     login(request, user)
 
