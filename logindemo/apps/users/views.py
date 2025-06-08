@@ -157,15 +157,16 @@ def acc_deletion_email(request):
 def acc_deletion_completed(request, uidb64, token):
     try:
         uid = urlsafe_base64_decode(uidb64).decode()
-        user = CustomUser.objects.get(pk=uid)
+        user = CustomUser.objects.get(pk = uid)
     except (CustomUser.DoesNotExist, ValueError, OverflowError, TypeError):
         user = None
 
     if user is not None and default_token_generator.check_token(user, token):
-        username = user.username
-        user.delete()
+        user.is_active = False
+        user.save()
+
         return render(request, 'acc_delete/completed.html', {
-            'username': username
+            'username': user.username
         })
     else:
         return render(request, 'acc_delete/invalid.html')
