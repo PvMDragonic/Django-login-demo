@@ -1,5 +1,9 @@
 from django.contrib.auth import authenticate, logout
 from django.shortcuts import render, redirect
+from django.utils.safestring import mark_safe
+from django.utils.http import urlsafe_base64_encode
+from django.utils.encoding import force_bytes
+from django.urls import reverse
 from django.contrib import messages
 
 from config.utils import handle_login
@@ -18,9 +22,18 @@ def dashboard_login(request):
             password = request.POST.get('password')
         )
 
-        if user is not None and user.validated:
-            handle_login(request, user)
-            return redirect('dashboard') 
+        if user is not None:
+            if user.validated:
+                handle_login(request, user)
+                return redirect('dashboard')
+            else:
+                uidb64 = urlsafe_base64_encode(force_bytes(user.pk))
+                activation_url = reverse('sign_up_resend', args = [uidb64])
+                message = (
+                    'Your account is inactive. Please, check your email or '
+                    f'<a href="{activation_url}">request a new activation email</a>.'
+                )
+                messages.error(request, mark_safe(message)) 
         else:
             messages.error(request, 'Invalid email or password.')
 
