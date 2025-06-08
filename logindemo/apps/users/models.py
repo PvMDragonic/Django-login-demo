@@ -27,11 +27,14 @@ class CustomUserManager(BaseUserManager):
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     username = models.CharField(max_length = 50, unique = True)
     email = models.EmailField(unique = True)
+
     signup_date = models.DateTimeField(auto_now_add = True)
-    is_active = models.BooleanField(default = True)
-    is_staff = models.BooleanField(default = False)
     login_count = models.PositiveIntegerField(default = 0) 
     dashboard_reloads = models.PositiveIntegerField(default = 0)
+
+    validated = models.BooleanField(default = False)
+    is_active = models.BooleanField(default = True)
+    is_staff = models.BooleanField(default = False)
 
     objects = CustomUserManager()
 

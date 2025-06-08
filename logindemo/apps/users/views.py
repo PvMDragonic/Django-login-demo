@@ -20,7 +20,6 @@ def sign_up_form(request):
         if form.is_valid():
             try:
                 user = form.save()
-                user.is_active = False
                 user.save()
 
                 request.session['user_name'] = user.username
@@ -70,7 +69,7 @@ def sign_up_activate(request, uidb64, token):
         invalid_reason = 'invalid_user'
     
     if not invalid_reason:
-        if user.is_active:
+        if user.validated:
             invalid_reason = 'already_activated'
         elif not default_token_generator.check_token(user, token):
             invalid_reason = 'expired'
@@ -84,7 +83,7 @@ def sign_up_activate(request, uidb64, token):
 
         return redirect('sign_up_invalid')
 
-    user.is_active = True
+    user.validated = True
     user.save()
 
     handle_login(request, user)
@@ -113,7 +112,7 @@ def sign_up_resend(request, uidb64):
     except (CustomUser.DoesNotExist, ValueError, OverflowError, TypeError):
         user = None
 
-    if user is not None and not user.is_active:
+    if user is not None and not user.validated:
         message = render_to_string('sign_up/email.html', {
             'user': user,
             'uid': uidb64,

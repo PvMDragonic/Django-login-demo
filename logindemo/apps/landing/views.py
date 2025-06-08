@@ -18,7 +18,7 @@ def dashboard_login(request):
             password = request.POST.get('password')
         )
 
-        if user is not None and user.is_active:
+        if user is not None and user.validated:
             handle_login(request, user)
             return redirect('dashboard') 
         else:
