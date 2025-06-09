@@ -1,5 +1,8 @@
-# Django login system
-This is a somewhat simple login system made entirely with Django on both front- and back-ends.
+<div align="center">
+   <h1 align="center">Django login system</h1>
+   <p>This is a somewhat simple login system made entirely with Django on both front- and back-ends.</p>
+   <img src="https://github.com/user-attachments/assets/b7388fda-5d69-4b57-acdc-daf3e431859f" alt="Django-login-demo landing page" height="420"/>
+</div>
 
 ## Key Features
 * Minimalistic visual theme;
