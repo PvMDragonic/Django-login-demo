@@ -13,14 +13,14 @@
 * Login validation;
 * Logged-in dashboard;
 * Account logoff;
-* Account "deletion" (invalid)
+* Account "deletion" (invalidation)
 
 ## Installation
 
 ### Dependencies
 * Download and install Python;
 * Install the following dependencies:
-    * `pip install django django-compressor`
+    * `pip install django django-compressor python-decouple`
 * Download and install Dart-sass
     * Windows
         * Extract and move it to `C:/Program Files/SASS`;
@@ -42,13 +42,17 @@
     * Validate the install with `sass --version` in a command prompt/terminal.
 
 ### Setup 
-* Inside "logindemo", creade a `.env` file;
-    * Add the following lines to it as is:
+* Clone the repository;
+* Navigate inside the "logindemo" folder;
+* Creade a `.env` file;
+    * Add the following lines to it as is and save:
         * `SECRET_KEY = supermegasecretkey123`
         * `DEBUG = True`
     * If you wish to generate a proper secure key, open a command promp/terminal window and execute:
         * `python -c "from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())"`
-* Run the project with `python manage.py runserver` from inside "logindemo".
+* Create the database with `python manage.py migrate`;
+* Create an admin user with `python manage.py createsuperuser` (optional);
+* Run the project with `python manage.py runserver`;
 
 ## Credits
 This project was built with:
